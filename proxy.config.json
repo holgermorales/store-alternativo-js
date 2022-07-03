@@ -1,0 +1,8 @@
+{
+  "/store/rest/api/*": {
+    "target": "http://localhost:8085/",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "silent"
+  }
+}
