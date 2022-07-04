@@ -1,7 +1,8 @@
 import {Injectable} from "@angular/core";
 import {RequestService} from "./request.service";
 import {Observable} from "rxjs";
-import {environment} from "../environments/environment";
+import {environment} from "../../environments/environment";
+import {ResponseModel} from "../models/response.model";
 
 @Injectable({providedIn: 'root'})
 export class ProductoService {
@@ -15,7 +16,7 @@ export class ProductoService {
    * Get all productos without category.
    * @param param Json {dato:"base64encoded"}
    */
-  getAll(param): Observable<Response> {
+  getAll(param: any): Observable<ResponseModel> {
     return this.requestService.postRequest(`${this.apiUrl}/todos`, param);
   }
 }

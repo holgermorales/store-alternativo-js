@@ -5,25 +5,44 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {NavComponent} from "./components/nav/nav.component";
 import {ProductComponent} from "./components/product/product.component";
-import {ProductosComponent} from "./components/products/productos.component";
+import {ProductsComponent} from "./components/products/products.component";
 import {ImgComponent} from "./components/img/img.component";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {TimeInterceptor} from "./interceptors/time.interceptor";
+import {NotFoundComponent} from './pages/not-found/not-found.component';
+import {CategoryComponent} from './pages/category/category.component';
+import {MycartComponent} from './pages/mycart/mycart.component';
+import {LoginComponent} from './pages/login/login.component';
+import {RegisterComponent} from './pages/register/register.component';
+import {HomeComponent} from "./pages/home/home.component";
+import {InventarioComponent} from "./pages/inventario/inventario.component";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     ProductComponent,
-    ProductosComponent,
-    ImgComponent
+    ProductsComponent,
+    ImgComponent,
+    NotFoundComponent,
+    CategoryComponent,
+    MycartComponent,
+    LoginComponent,
+    RegisterComponent,
+    HomeComponent,
+    InventarioComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, useClass: TimeInterceptor, multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

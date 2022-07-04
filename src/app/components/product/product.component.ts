@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {Product} from "../../models/product.model";
+import {CatalogoModel} from "../../models/catalogo.model";
+import {GaleriaModel} from "../../models/galeria.model";
 
 @Component({
   selector: 'app-product',
@@ -9,15 +11,21 @@ import {Product} from "../../models/product.model";
 export class ProductComponent implements OnInit {
 
   @Input() product: Product = {
-    id: '',
-    title: '',
-    price: 0,
-    description: '',
-    category: '',
-    image: ''
+    id: 0,
+    precio: 0,
+    precioVentaPublico: 0,
+    titulo: '',
+    stock: '',
+    categoria: {
+      id: 0,
+      grupo: '',
+      nemonico: '',
+      nombre: ''
+    },
+    galeria: []
   };
   @Output() addedProduct = new EventEmitter<Product>();
-  @Output() showDetail = new EventEmitter<String>();
+  @Output() showDetail = new EventEmitter<number>();
 
   constructor() {
   }

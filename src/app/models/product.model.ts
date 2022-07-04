@@ -1,8 +1,12 @@
+import {CatalogoModel} from "./catalogo.model";
+import {GaleriaModel} from "./galeria.model";
+
 export interface Product {
-  id: string;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
+  id: number;
+  precio: number;
+  precioVentaPublico: number;
+  titulo: string;
+  stock: string;
+  categoria: CatalogoModel;
+  galeria: GaleriaModel[];
 }

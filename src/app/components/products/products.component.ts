@@ -1,28 +1,35 @@
 import {Component, OnInit} from "@angular/core";
 import {Product} from "../../models/product.model";
-import {StoreService} from "../../../services/store.service";
-import {ProductsService} from "../../../services/products.service";
+import {StoreService} from "../../services/store.service";
+import {ProductsService} from "../../services/products.service";
+import {ProductoService} from "../../services/producto.service";
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./productos.component.scss']
+  styleUrls: ['./products.component.scss']
 })
-export class ProductosComponent implements OnInit {
+export class ProductsComponent implements OnInit {
 
   myShoppingCart: Product[] = [];
   total = 0;
-  // temporal hasta maquetar
   products: Product[] = [];
   showProductDetail = false;
+  paginacion = {
+    cuenta: 'S',
+    pagina: 1,
+    itemsPorPagina: 50,
+    total: 0
+  }
 
   constructor(private storeService: StoreService,
-              private productsService: ProductsService) {
+              private productsService: ProductsService,
+              private productoService: ProductoService) {
   }
 
   ngOnInit() {
     this.myShoppingCart = this.storeService.getMyShoppingCart();
-    this.getProductsExterno();
+    this.obtenerProductos();
 
   }
 
@@ -41,7 +48,14 @@ export class ProductosComponent implements OnInit {
     this.showProductDetail = !this.showProductDetail;
   }
 
-  onShowDetail(id: any) {
+  onShowDetail(id: number) {
+  }
 
+  obtenerProductos() {
+    this.productoService.getAll(this.paginacion).subscribe(response => {
+      if (response.dato) {
+        this.products = response.dato;
+      }
+    });
   }
 }

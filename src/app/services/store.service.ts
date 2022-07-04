@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Product} from "../app/models/product.model";
+import {Product} from "../models/product.model";
 import {BehaviorSubject} from "rxjs"
 
 @Injectable({
@@ -24,6 +24,6 @@ export class StoreService {
   }
 
   getTotal() {
-    return this.myShoppingCart.reduce((sum, item) => sum + item.price, 0);
+    return this.myShoppingCart.reduce((sum, item) => sum + item.precioVentaPublico, 0);
   }
 }
